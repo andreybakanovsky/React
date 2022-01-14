@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
 import ClassCounter from './components/ClassCounter';
 import Counter from './components/counter';
+import PostItem from './components/PostItem';
 import './styles/App.css';
 function App() {
-  const [value, setValue] = useState('Text in an inpit'); // it's hook
-
+  
   return (
     <div className="App">
-
-      <div className="post" >
-        <div className='post__content'>
-          <strong>1. Javascript </strong>
-          <div>
-            Javascript - programming language
-          </div>
-        </div>
-        <div className='post__btns'>
-          <button>Delete</button>
-        </div>
-      </div>
+      <PostItem post={{ id: 1, title: 'Javascript', body: 'Desctition' }} />
+      <PostItem post={{ id: 2, title: 'Javascript', body: 'Desctition' }} />
+      <PostItem post={{ id: 3, title: 'Javascript', body: 'Desctition' }} />
+      <PostItem post={{ id: 4, title: 'Javascript', body: 'Desctition' }} />
 
     </div>
   );
