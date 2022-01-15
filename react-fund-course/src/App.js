@@ -14,35 +14,31 @@ function App() {
     { id: 3, title: 'Javascript 3', body: 'Description' },
   ])
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [post, setPost] = useState({
+    title:  '',
+    body: ''
+  });
 
   const addNewPost = (event) => {
     event.preventDefault(); // отключаем обновление страницы
-    const newPost = {
-      id: Date.now(),
-      title,
-      body
-    }
-    setPosts([...posts, newPost]);
+    setPosts([...posts, {...post, id: Date.now()}]);
     /* не изменяем состояние напрямую - мы берем старый массив и к нему добавляем новый Post */
 
-    setTitle('');
-    setBody('');
+    setPost({ title: '', body: '' });
   }
 
   return (
     <div className="App">
       <form>
         <MyInput /* управляемый компонент */
-          value={title}
-          onChange={event => setTitle(event.target.value)}
+          value={post.title}
+          onChange={event => setPost({ ...post, title: event.target.value })}
           type="text"
           placeholder='Posts name'
         />
         <MyInput
-          value={body}
-          onChange={event => setBody(event.target.value)}
+          value={post.body}
+          onChange={event => setPost({ ...post, body: event.target.value })}
           type="text"
           placeholder='Posts description '
         />
