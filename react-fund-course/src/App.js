@@ -15,17 +15,20 @@ function App() {
   ])
 
   const [title, setTitle] = useState('');
-  const bodyInputRef = useRef(); // для неуправляемого компонента
-
+  const [body, setBody] = useState('');
 
   const addNewPost = (event) => {
     event.preventDefault(); // отключаем обновление страницы
-    console.log(title);
-    console.log(bodyInputRef.current.value);
+    const newPost = {
+      id: Date.now(),
+      title,
+      body
+    }
+    setPosts([...posts, newPost]);
+    /* не изменяем состояние напрямую - мы берем старый массив и к нему добавляем новый Post */
 
-    // function addNewPost() {
-    //   // possible
-    // }
+    setTitle('');
+    setBody('');
   }
 
   return (
@@ -37,10 +40,9 @@ function App() {
           type="text"
           placeholder='Posts name'
         />
-        {/* <input ref={bodyInputRef} type='text' /> */}
-
-        <MyInput  /* неуправляемый/ неконтролируемый компонент */
-          ref={bodyInputRef}
+        <MyInput
+          value={body}
+          onChange={event => setBody(event.target.value)}
           type="text"
           placeholder='Posts description '
         />
